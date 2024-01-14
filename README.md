@@ -12,6 +12,10 @@ Projeto desenvolvido no segundo curso da formação Avançando com Java da Alura
 - Trabalhar com vários tipos de consultas ao banco de dados;
 - Aprofundar na interface JPARepository
 
+## Link de documentações
+
++ https://docs.spring.io/spring-data/jpa/reference/#repositories
+
 ## Enun o que é isso?
 
 Enum é uma abreviação de "enumerados" e é um tipo especial de classe em Java que tem um número fixo de constantes.
@@ -178,3 +182,41 @@ partida é começar com Lazy Fetch Type e optar por Eager onde o carregamento co
 
 O escopo da aplicação, a quantidade de dados, a frequência de acesso e muitos outros fatores serão decisivos para essa
 escolha. É importante sempre analisar o contexto e testar o desempenho para alcançar a melhor estratégia.
+
+## Consultas derivadas ("derived queries")
+
+A JPA tem diversos recursos, e um dos mais legais que podemos utilizar são as derived queries, em que trabalhamos com
+métodos específicos que consultam o banco de forma personalizada. Esses métodos são criados na interface que herda de
+JpaRepository. Neles, utilizaremos palavras-chave (em inglês) para indicar qual a busca que queremos fazer.
+
+### A estrutura básica de uma derived query na JPA consiste em:
+
+````
+verbo introdutório + palavra-chave “By” + critérios de busca
+
+````
+
++ Como verbos introdutórios, temos find, read, query, count e get. Já os critérios são variados.
+
+### Palavras relativas à igualdade:
+
++ **Is**, para ver igualdades
++ **Equals**, para ver igualdades (essa palavra-chave e a anterior têm os mesmos princípios, e são mais utilizadas para
+  a legibilidade do método).
++ **IsNot**, para checar desigualdades
++ **IsNull**, para verificar se um parâmetro é nulo
+
+### Palavras relativas à similaridade:
+
++ **Containing**, para palavras que contenham um trecho
++ **StartingWith**, para palavras que comecem com um trecho
++ **EndingWith**, para palavras que terminem com um trechoEssas palavras podem ser concatenadas com outras condições,
+  como o ContainingIgnoreCase, para não termos problemas de Case Sensitive.
+
+### Palavras relacionadas à comparação:
+
++ **LessThan**, para buscar registros menores que um valor
++ **LessThanEqual**, para buscar registros menores ou iguais a um valor
++ **GreaterThan**, para identificar registros maiores que um valor
++ **GreaterThanEqual**, para identificar registros maiores ou iguais a um valor
++ **Between**, para saber quais registros estão entre dois valores
