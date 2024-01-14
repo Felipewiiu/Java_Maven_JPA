@@ -34,7 +34,7 @@ public class Serie {
    
 //    @Transient // essa anotação garante que um atributo não será persistido no banco
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
 
@@ -44,6 +44,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));// estabelecimento de relação bidirecional
         this.episodios = episodios;
     }
 
@@ -137,7 +138,8 @@ public class Serie {
                 ", avaliacao=" + avaliacao +
                 ", atores='" + atores + '\'' +
                 ", poster='" + poster + '\'' +
-                ", sinopse='" + sinopse + '\'';
+                ", sinopse='" + sinopse + '\''+
+        ", episodios='" + episodios + '\'';
 
     }
 }

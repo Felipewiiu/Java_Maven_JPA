@@ -19,7 +19,7 @@ public class Episodio {
     @ManyToOne // muitos episódios pertence a uma série
     private Serie serie;
 
-    public Episodio(){}
+    public Episodio(){}// construtor padrão do JPA
 
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
