@@ -1,4 +1,3 @@
-
 # Java: persistência de dados e consultas com Spring Data JPA
 
 Projeto desenvolvido no segundo curso da formação Avançando com Java da Alura
@@ -98,6 +97,15 @@ tipo Serie. Ele permite que a JPA crie uma instância da classe Serie sem a nece
 construtor. Dessa forma, a JPA consegue mapear os dados do banco para os atributos da classe corretamente.
 
 + OBS: Sem esse recurso a stack trace mostrará um erro chamado ``InstantiationException``
+
+## Relacionamentos Uni e Bidirecionais com JPA
+
+Ao trabalharmos com banco de dados, existem relacionamentos com diferentes tipos de direção. Existem relacionamentos
+unidirecionais e bidirecionais. Os unidirecionais deixam a relação visível apenas em um lado, enquanto relacionamentos
+bidirecionais permitem que os objetos de ambos os lados acessem e/ou alterem o objeto do outro lado. Isso é muito útil
+quando você quer ter um controle maior sobre seus objetos e as operações que você pode executar neles.
+
+## Operações em cascata
 
 
  

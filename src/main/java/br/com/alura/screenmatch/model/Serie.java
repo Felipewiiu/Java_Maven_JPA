@@ -32,7 +32,9 @@ public class Serie {
     private String poster;
     private String sinopse;
    
-    @Transient // essa anotação garante que um atributo não será persistido no banco
+//    @Transient // essa anotação garante que um atributo não será persistido no banco
+
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
     private List<Episodio> episodios = new ArrayList<>();
 
 
