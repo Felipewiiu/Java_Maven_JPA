@@ -12,7 +12,7 @@ Projeto desenvolvido no segundo curso da formação Avançando com Java da Alura
 - Trabalhar com vários tipos de consultas ao banco de dados;
 - Aprofundar na interface JPARepository
 
-## Link de documentações
+## Links de documentações
 
 + https://docs.spring.io/spring-data/jpa/reference/#repositories
 
@@ -220,3 +220,19 @@ verbo introdutório + palavra-chave “By” + critérios de busca
 + **GreaterThan**, para identificar registros maiores que um valor
 + **GreaterThanEqual**, para identificar registros maiores ou iguais a um valor
 + **Between**, para saber quais registros estão entre dois valores
+
+### Ordenação
+
++ **Desc**, Para ordenar os dados de forma decrescente
+
+## Ordenações e outras palavras chaves das consultas derivadas
+
+Para trabalhar com a ordenação de registros pesquisados, também existem algumas palavras-chave. Podemos utilizar o
+**OrderBy** para ordenar os registros por algum atributo deles, como a série pela avaliação. Também podemos encadear
+atributos. Se uma Série tem um Ator e queremos ordenar pelo nome do ator, podemos utilizar **OrderByAtorNome**, por exemplo.
+
+Além do **OrderBy**, ainda existem alguns outros recursos de filtros que podem ser utilizados:
+
++ **Distinct**, para remover dados duplicados
++ **First**, para pegar o primeiro registro
++ **Top**, para limitar o número de dados
