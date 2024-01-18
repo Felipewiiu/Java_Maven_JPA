@@ -16,7 +16,7 @@ Projeto desenvolvido no segundo curso da formação Avançando com Java da Alura
 
 + https://docs.spring.io/spring-data/jpa/reference/#repositories
 
-## Enun o que é isso?
+## Enum o que é isso?
 
 Enum é uma abreviação de "enumerados" e é um tipo especial de classe em Java que tem um número fixo de constantes.
 Empregar um Enum pode ser muito útil na programação para armazenar valores que sabemos que nunca vão mudar, como os dias
@@ -229,10 +229,61 @@ verbo introdutório + palavra-chave “By” + critérios de busca
 
 Para trabalhar com a ordenação de registros pesquisados, também existem algumas palavras-chave. Podemos utilizar o
 **OrderBy** para ordenar os registros por algum atributo deles, como a série pela avaliação. Também podemos encadear
-atributos. Se uma Série tem um Ator e queremos ordenar pelo nome do ator, podemos utilizar **OrderByAtorNome**, por exemplo.
+atributos. Se uma Série tem um Ator e queremos ordenar pelo nome do ator, podemos utilizar **OrderByAtorNome**, por
+exemplo.
 
 Além do **OrderBy**, ainda existem alguns outros recursos de filtros que podem ser utilizados:
 
 + **Distinct**, para remover dados duplicados
 + **First**, para pegar o primeiro registro
 + **Top**, para limitar o número de dados
+
+## Maneiras de se escrever Query nativas
+
+É possivel escrever query nativas de um banco de dados utilizando a anotação @Query como no exemplo a seguir:
+
+````
+@Query(value = "select * from series WHERE series.total_temporadas <= 5 AND series.avaliacao >= 7.5", nativeQuery = true)
+    List<Serie> seriesPorTemporadasEAvaliacao();
+````
+
+## Trecho de como usar o JPQL
+
+Ao definir o tipo de consulta **@Query()**  podemos escrever dentro dos parenteses a nossa consulta
+
+````
+ @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:trechoEpsodio%")
+ 
+````
+
+Essa consulta seleciona o episódio(e) da tabela Serie fazendo uma junção da tabela série com os episódios com o (JOIN)
+onde o episódio.titulo contenha a variável trechoEpisodio usando o  **ILIKE** para trazer tudo que seja igual ao
+recebido por parâmetro e tudo isso dentro do caracter coringa(% %)
+
++ **Dica:** Para se trabalhar com atributos basta destacalos com dois pontos(:)
+
+## Os comandos LIKE e ILIKE
+
+LIKE é um comando SQL usado na cláusula WHERE para procurar um padrão específico em uma coluna. Em outras palavras, é
+uma maneira de fazer uma pesquisa em uma tabela, da mesma maneira que você pode usar um filtro de pesquisa em uma
+planilha do Excel, ou utilizar o método contains() do Java.
+
+Você pode estar se perguntando: "Por que eu deveria aprender sobre LIKE se eu simplesmente posso procurar diretamente a
+informação que quero na minha tabela?". Bom, imagine que você tem uma tabela com milhares de registros, e você precisa
+encontrar todos os nomes que começam com a letra 'A'. Fazer isso manualmente levaria muito tempo, não é? É aqui que o
+comando LIKE é realmente útil!
+
+### A sintaxe básica para usar o comando LIKE é a seguinte:
+
+````
+SELECT column1, column2, ...
+FROM table_name
+WHERE column LIKE pattern;
+````
+
+O 'pattern' é o padrão que você está procurando. Para definir esse padrão, você usa os caracteres curinga % e _. O %
+substitui zero ou mais caracteres, enquanto _ substitui um único caractere.
+
+O comando LIKE é sensível a maiúsculas e minúsculas em
+alguns bancos de dados. Portanto, se você quiser uma busca que não leve isso em consideração, como se fosse o IgnoreCase
+em Java, você deve utilizar o ILIKE.
